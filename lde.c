@@ -45,6 +45,51 @@ void inserir(Lista *lde, int valor){
 
 }
 
+void remover(Lista *lde, int valor){
+    if (lde == NULL || lde->primeira == NULL) { // Verifica se a lista está vazia
+        printf("Lista vazia, impossível remover.\n");
+        return;
+    }
+    Celula *anterior = NULL;
+    Celula *atual = lde->primeira;
+    // Busca o nó a ser removido
+    while (atual != NULL && atual->valor < valor) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+    // Se não encontrou o valor na lista
+    if (atual == NULL || atual->valor != valor) {
+        printf("Valor %d não encontrado na lista.\n", valor);
+        return;
+    }
+    // Se o nó a ser removido é o primeiro da lista
+    if (anterior == NULL) {
+        lde->primeira = atual->proximo; 
+    } else {
+        anterior->proximo = atual->proximo; 
+    }
+    free(atual); // Libera a memória do nó removido
+    lde->qtde--; // Atualiza a quantidade de elementos
+}
+
+void buscar(Lista *lde, int valor){
+    if (lde == NULL || lde->primeira == NULL) { // Verifica se a lista está vazia
+        printf("A lista está vazia.\n");
+        return;
+    }
+    Celula *atual = lde->primeira;
+    int posicao = 0;
+    while (atual != NULL) {
+        if (atual->valor == valor) { // Se encontrou o valor
+            printf("O número %d está na posição %d.\n", valor, posicao);
+            return;
+        }
+        atual = atual->proximo;
+        posicao++;
+    }
+    printf("O número %d não está na lista.\n", valor); // Se o valor não foi encontrado
+}
+
 void imprimir(Lista *lde){
     Celula *atual = lde->primeira;
 
@@ -69,6 +114,9 @@ int main(){
     imprimir(lde);
     inserir(lde, 70);
     imprimir(lde);
+    remover(lde, 52);
+    imprimir(lde);
+    buscar(lde, 50);
 
     return 0;
 }
