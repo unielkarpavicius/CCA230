@@ -53,8 +53,8 @@ void remover(Lista *lde, int valor){
     Celula *anterior = NULL;
     Celula *atual = lde->primeira;
     // Busca o nó a ser removido
-    while (atual != NULL && atual->valor < valor) {
-        anterior = atual;
+    while (atual != NULL && atual->valor < valor) {                                                             
+        anterior = atual;                                    
         atual = atual->proximo;
     }
     // Se não encontrou o valor na lista
@@ -64,7 +64,7 @@ void remover(Lista *lde, int valor){
     }
     // Se o nó a ser removido é o primeiro da lista
     if (anterior == NULL) {
-        lde->primeira = atual->proximo; 
+        lde->primeira = atual->proximo;                                                             
     } else {
         anterior->proximo = atual->proximo; 
     }
@@ -117,6 +117,8 @@ int main(){
     remover(lde, 52);
     imprimir(lde);
     buscar(lde, 50);
+    buscar(lde, 70);
+    buscar(lde, 52);
 
     return 0;
 }
