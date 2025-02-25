@@ -118,11 +118,10 @@ void imprmir_reverso(Lista *ldde){
         return;
     }
     Celula *atual = ldde->primeira;
-    // Percorre a lista até o último celula
+    // Percorre a lista até a última celula
     while (atual->proximo != NULL) {
         atual = atual->proximo;
     }
-    // Agora `atual` está no último celula, então percorremos de trás para frente
     printf("[");
     while (atual != NULL) {
         printf(" %d ", atual->valor);
