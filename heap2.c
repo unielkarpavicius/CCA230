@@ -24,7 +24,6 @@ int ultimo_pai(Heap *h) {
     return ((h->qtde / 2) - 1);
 }
 
-// Reorganiza para manter max-heap (heapify down)
 void peneirar(Heap *h, int pai) {
     int fe = filho_esquerda(pai);
     int fd = filho_direita(pai);
@@ -45,7 +44,6 @@ void peneirar(Heap *h, int pai) {
     }
 }
 
-// Constroi heap a partir do vetor atual
 void construir(Heap *h) {
     for (int i = ultimo_pai(h); i >= 0; i--) {
         peneirar(h, i);
@@ -61,7 +59,7 @@ void inserir(Heap *h, int valor) {
     h->valores[h->qtde] = valor;
     h->qtde++;
 
-    construir(h);  // <<<<< Aqui está o uso da função construir
+    construir(h);  
 }
 
 void remover(Heap *h) {
@@ -74,7 +72,7 @@ void remover(Heap *h) {
     h->valores[0] = h->valores[h->qtde - 1];
     h->qtde--;
 
-    construir(h); // <<<<< Também usa construir após remover
+    construir(h); 
 
     printf("Removido: %d\n", removido);
 }
@@ -97,12 +95,12 @@ int main() {
     inserir(&h, 10);
     inserir(&h, 5);
 
-    imprimir(&h); // Deve mostrar o maior no topo (30)
+    imprimir(&h); 
 
-    remover(&h);  // Remove 30
+    remover(&h); 
     imprimir(&h);
 
-    inserir(&h, 40); // Novo maior
+    inserir(&h, 40); 
     imprimir(&h);
 
     return 0;
