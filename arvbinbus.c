@@ -70,7 +70,6 @@ void pos_order(No* raiz){
     }
 }
 
-
 int main(){
     printf("Arvore binária de busca\n");
     Arvore* tree = cria_arvore();
